@@ -1,6 +1,5 @@
 # Amanda Hanway - Streaming Data, Module 2
 
-================================================
 
 # streaming-02-multiple-processes
 
@@ -73,8 +72,8 @@ we end up with an error.
 
 To clear the terminal, in the terminal window, type clear and hit enter or return. 
 
-`clear` - Note: this did not work for me.  A google search suggested using 'reset', also did not work.  
-I just closed the terminal after each run.
+`clear` 
+- Note: this did not work for me. A google search suggested using 'reset', also did not work. I just closed the terminal after each run.
 
 To document results, clear the terminal, run the script, and paste all of the terminal contents into the output file.
 
@@ -124,7 +123,7 @@ When you get an error, read them carefully.
 Do a web search on the sqlite3 'database is locked' error.
 
 - What do you learn?
-    This error code occurs when you try to do two incompatible things with a database at the same time from the same database connection. 
+   - This error code occurs when you try to do two incompatible things with a database at the same time from the same database connection. 
     For example, if you are in the middle of a SELECT statement and you try to DROP one of the tables being read by the SELECT, you will 
     get an SQLITE_LOCKED error. (https://www2.sqlite.org/cvstrac/wiki?p=DatabaseIsLocked)
 - Once a process fails, it crashes the main process and everything stops. 
@@ -142,8 +141,8 @@ with no process able to move forward and make progress.
 Check out Wikipedia's article on deadlock and other sources to learn how to prevent and avoid locking issues in concurrent processes. 
 
 https://en.wikipedia.org/wiki/Deadlock 
-Handling Deadlock:
-    -Ignoring
-    -Detection
-    -Prevention
-    -Avoidance
+- Handling Deadlock:
+    - Ignoring
+    - Detection
+    - Prevention
+    - Avoidance
