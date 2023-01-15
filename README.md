@@ -1,3 +1,7 @@
+# Amanda Hanway - Streaming Data, Module 2
+
+================================================
+
 # streaming-02-multiple-processes
 
 > Multiple processes accessing a shared resource concurrently
@@ -25,13 +29,27 @@ Read the output. Read the code.
 Try to figure out what's going on. 
 
 1. What libraries did we import?
-1. Where do we set the task_duration?
-1. How many functions are defined? 
-1. What are the function names? 
-1. In general, what does each function do? 
-1. Where does the execution begin?
-1. How many processes do we start?
-1. How many records does each process insert?
+    sqlite3, time, multiprocessing, os, datetime, platform, sys
+2. Where do we set the task_duration?
+    line 34
+3. How many functions are defined? 
+    7
+4. What are the function names? 
+    create_table, drop_table, insert_pet, process_one, process_two, process_three, recreate_database
+5. In general, what does each function do? 
+    create_table: creates a database connection, then a sql table called pets
+    drop_table: drops pets if it exists
+    insert_pet: inserts the name and breed into pets
+    process_one: inserts Ace and Buddy
+    process_two: inserts Cooper and Rabbit
+    process_three: inserts Emma and Felix
+    recreate_database: drops pets, creates pets, and prints a message 
+6. Where does the execution begin?
+    line 132
+7. How many processes do we start?
+    3
+8. How many records does each process insert?
+    2 
 
 In this first run, we start 3 processes, 
 each inserting 2 records into a shared database 
@@ -55,7 +73,8 @@ we end up with an error.
 
 To clear the terminal, in the terminal window, type clear and hit enter or return. 
 
-`clear`
+`clear` - Note: this did not work for me.  A google search suggested using 'reset', also did not work.  
+I just closed the terminal after each run.
 
 To document results, clear the terminal, run the script, and paste all of the terminal contents into the output file.
 
@@ -95,8 +114,9 @@ Do a web search to find helpful videos on anything that seems confusing.
 Python has pretty helpful error messages. 
 When you get an error, read them carefully. 
 
-- What error do you get?
-- Can you tell what line it was executing when it failed?
+- What error do you get?  'database is locked'
+- Can you tell what line it was executing when it failed?  line 106, in process_two
+    insert_pet("P2", "Cooper", "Rabbit")
 
 
 ## Database Is Locked Error
@@ -104,6 +124,9 @@ When you get an error, read them carefully.
 Do a web search on the sqlite3 'database is locked' error.
 
 - What do you learn?
+    This error code occurs when you try to do two incompatible things with a database at the same time from the same database connection. 
+    For example, if you are in the middle of a SELECT statement and you try to DROP one of the tables being read by the SELECT, you will 
+    get an SQLITE_LOCKED error. (https://www2.sqlite.org/cvstrac/wiki?p=DatabaseIsLocked)
 - Once a process fails, it crashes the main process and everything stops. 
 
 ## Deadlock
@@ -117,3 +140,10 @@ with no process able to move forward and make progress.
 ## Learn More
 
 Check out Wikipedia's article on deadlock and other sources to learn how to prevent and avoid locking issues in concurrent processes. 
+
+https://en.wikipedia.org/wiki/Deadlock 
+Handling Deadlock:
+    -Ignoring
+    -Detection
+    -Prevention
+    -Avoidance
