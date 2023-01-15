@@ -48,13 +48,17 @@ output_file = open(output_file_name, "w", newline='')
 # create a writer for the output
 writer = csv.writer(output_file, delimiter=",")
 
+# define header column names and write to output file
+header = next(reader)
+header_list = ["Index", "Patient_ID", "Age", "Gender", "BMI", "Blood_Pressure", "Diabetic", "Children", "Smoker", "Region", "Claim"]
+writer.writerow(header_list)
+
 # process the data
 for row in reader:
     # read a row from the file (update column names)
     index, PatientID, age, gender, bmi, bloodpressure, diabetic, children, smoker, region, claim = row
 
     # use an fstring to create a message from our data
-    # notice the f before the opening quote for our string?
     fstring_message = f"[{index}, {PatientID}, {age}, {gender}, {bmi}, {bloodpressure}, {diabetic}, {children}, {smoker}, {region}, {claim}]"
 
     # prepare a binary (1s and 0s) message to stream
